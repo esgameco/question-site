@@ -12,6 +12,6 @@ A web app made with Gin and Vue that allows users to ask and answer questions.
 ## TODO
 
 1. Prototype
-    - [] Question and Answer Model
-    - [] Database Setup
-    - [] CRUD
+    - [ ] Question and Answer Model
+    - [ ] Database Setup
+    - [ ] CRUD
