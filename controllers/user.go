@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Login(c *gin.Context) {
+func (con *Controller) Login(c *gin.Context) {
 	var user models.User
 
 	if err := c.ShouldBindJSON(&user); err != nil {
@@ -26,7 +26,7 @@ func Login(c *gin.Context) {
 		})
 	} else {
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"message": "Invalid email or password",
+			"error": "Invalid email or password",
 		})
 	}
 }
