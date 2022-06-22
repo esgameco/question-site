@@ -2,17 +2,18 @@ module github.com/esgameco/question-site
 
 go 1.18
 
-require github.com/gin-contrib/static v0.0.1
+require (
+	github.com/gin-contrib/sessions v0.0.5
+	github.com/gin-contrib/static v0.0.1
+	gorm.io/driver/sqlite v1.3.4
+)
 
 require (
-	github.com/gin-contrib/sessions v0.0.5 // indirect
 	github.com/gorilla/context v1.1.1 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
-	github.com/wader/gormstore/v2 v2.0.0 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	gorm.io/driver/sqlite v1.3.4 // indirect
 )
 
 require (

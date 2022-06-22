@@ -5,7 +5,7 @@
         </div>
         <div class="question-footer">
             <p>{{ author }} answered on {{ createdDate }}</p>
-            <LikeComponent />
+            <LikeComponent :likes="likes" :id="ID" />
         </div>
     </div>
 </template>
@@ -14,14 +14,28 @@
 import LikeComponent from './LikeComponent.vue'
 
 export default {
+    props: ['answer'],
     components: {
         LikeComponent,
     },
     data() {
         return {
-            body: 'I agree',
-            author: 'Author',
-            createdDate: '7/11/22',
+            ID: 0,
+            body: '',
+            updatedDate: '',
+            createdDate: '',
+            author: '',
+            likes: 0,
+        };
+    },
+    mounted() {
+        this.ID = this.question.ID;
+        this.body = this.question.body;
+        this.updatedDate = this.question.updatedDate;
+        this.createdDate = this.question.createdDate;
+        this.author = this.question.author;
+        if (this.question.likes) {
+            this.likes = this.question.likes.amount;
         }
     },
 }

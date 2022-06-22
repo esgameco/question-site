@@ -3,14 +3,14 @@
         <div class="question-header">
             <h1>{{ title }}</h1>
             
-            <p v-if="updatedDate.length > 0">Updated: {{ updatedDate }}</p>
+            <p v-if="updatedDate && updatedDate.length > 0">Updated: {{ updatedDate }}</p>
         </div>
         <div class="question-body">
             <p>{{ body }}</p>
         </div>
         <div class="question-footer">
-            <p>{{ author }} asked on {{ createdDate }}</p>
-            <LikeComponent />
+            <p>{{ author.username }} asked on {{ createdDate }}</p>
+            <LikeComponent :likes="likes" :id="ID" />
         </div>
     </div>
 </template>
@@ -19,18 +19,33 @@
 import LikeComponent from './LikeComponent.vue'
 
 export default {
+    props: ['question'],
+    watch: {
+        question: function(newQuestion) {
+            this.title = newQuestion.title;
+            this.body = newQuestion.body;
+            this.author = newQuestion.author;
+            this.createdDate = newQuestion.createdDate;
+            this.updatedDate = newQuestion.updatedDate;
+            if (this.question.likes) {
+                this.likes = this.question.likes.amount;
+            }
+            this.ID = newQuestion.ID;
+        }
+    },
     components: {
         LikeComponent,
     },
     data() {
         return {
-            title: 'Title',
-            createdDate: '1/1/22',
+            ID: 0,
+            title: '',
+            body: '',
             updatedDate: '',
-            author: 'Author',
-            body: 'Body',
+            createdDate: '',
+            author: {username: ''},
             likes: 0,
-        }
+        };
     },
 }
 </script>
