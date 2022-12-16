@@ -25,8 +25,8 @@ export default {
             this.title = newQuestion.title;
             this.body = newQuestion.body;
             this.author = newQuestion.author;
-            this.createdDate = newQuestion.createdDate;
-            this.updatedDate = newQuestion.updatedDate;
+            this.createdDate = newQuestion.CreatedAt.substring(0, newQuestion.CreatedAt.indexOf("T"));
+            this.updatedDate = newQuestion.UpdatedAt.substring(0, newQuestion.UpdatedAt.indexOf("T"));
             if (this.question.likes) {
                 this.likes = this.question.likes.amount;
             }

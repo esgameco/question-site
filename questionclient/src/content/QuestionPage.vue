@@ -1,4 +1,7 @@
 <template>
+    <router-view />
+    <NavBar />
+
     <QuestionComponent :question="question" />
     
     <li v-for="answer in question.answers" :key="answer.ID">
@@ -7,14 +10,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import QuestionComponent from '../components/QuestionComponent.vue';
 import AnswerComponent from '../components/AnswerComponent.vue';
-import axios from 'axios';
+import NavBar from '../components/NavBar.vue';
 
 export default {
     components: {
         QuestionComponent,
         AnswerComponent,
+        NavBar
     },
     methods: {
         getQuestion(questionID) {

@@ -2,11 +2,22 @@
 
 A web app made with Gin and Vue that allows users to ask and answer questions.
 
-## Setup
+## Installation
+
+```bash
+git clone https://github.com/esgameco/question-site.git
+cd questionclient
+npm i
+export SECRET="insert encryption key"
+```
+
+## Run
 
 #### Development
-``` bash
-./devrun.sh
+
+```bash
+Linux: ./devrun.sh
+Windows: .\devrun.bat
 ```
 
 ## TODO
@@ -14,7 +25,7 @@ A web app made with Gin and Vue that allows users to ask and answer questions.
 1. Prototype
     - [x] Question and Answer Model
     - [x] Database Setup (sqlite for development)
-    - [ ] CRUD
-    - [ ] User Authentication
+    - [x] CRUD
+    - [x] User Authentication
     - [ ] Add API to Vue
     - [ ] Style components

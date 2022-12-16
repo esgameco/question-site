@@ -1,5 +1,7 @@
 <template>
     <router-view />
+    <NavBar />
+
     <div class="">
         <input v-model="username" type="text" placeholder="Username" />
         <input v-model="password" type="password" placeholder="Password" />
@@ -11,7 +13,12 @@
 <script>
 import axios from 'axios';
 
+import NavBar from '../components/NavBar.vue';
+
 export default {
+    components: {
+        NavBar,
+    },
     methods: {
         login() {
             axios.post(`/api/login`, {

@@ -44,7 +44,17 @@ func (con *Controller) CreateQuestion(c *gin.Context) {
 	userID := session.Get("id")
 	question.AuthorID = int(userID.(uint))
 
+	// Create question
 	con.Database.Create(&question)
+
+	// Add question to user
+	var user models.User
+	if err := con.Database.First(&user, userID); err.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error})
+		con.Database.Delete(&question)
+		return
+	}
+	con.Database.Model(&user).Association("Questions").Append(&question)
 
 	c.JSON(http.StatusOK, question)
 }
