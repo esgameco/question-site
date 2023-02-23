@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/esgameco/question-site/controllers"
@@ -12,6 +13,7 @@ import (
 )
 
 func main() {
+	fmt.Printf("test")
 	r := engine()
 	r.Use(gin.LoggerWithWriter(os.Stdout))
 	r.Use(gin.Recovery())
@@ -44,10 +46,11 @@ func engine() *gin.Engine {
 	// Authenticated routes
 	r.Use(controllers.IsAuthenticated())
 	{
-		r.GET("/api/questions", controller.GetQuestions)
-		r.GET("/api/questions/:id", controller.GetQuestion)
-		r.POST("/api/questions/create", controller.CreateQuestion)
-		r.POST("/api/questions/:id/update", controller.UpdateQuestion)
+		r.GET("/api/questions", controller.GetQuestionsQuery)
+		r.GET("/api/questions/all", controller.GetAllQuestions)
+		r.GET("/api/question/:id", controller.GetQuestion)
+		r.POST("/api/question/create", controller.CreateQuestion)
+		r.POST("/api/question/:id/update", controller.UpdateQuestion)
 	}
 
 	return r

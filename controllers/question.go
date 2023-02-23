@@ -8,9 +8,39 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (con *Controller) GetQuestions(c *gin.Context) {
+func (con *Controller) GetAllQuestions(c *gin.Context) {
 	var questions []models.Question
 	res := con.Database.Find(&questions)
+
+	if res.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": res.Error})
+		return
+	}
+
+	c.JSON(http.StatusOK, questions)
+}
+
+func (con *Controller) GetQuestionsQuery(c *gin.Context) {
+	var questions []models.Question
+	var questionsQuery models.QuestionsQuery
+	var sortType string
+
+	if err := c.ShouldBindJSON(&questionsQuery); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Choose between sort types
+	switch questionsQuery.SortType {
+	case "desc":
+		sortType = "UpdatedAt desc"
+	case "asc":
+		sortType = "UpdatedAt asc"
+	default:
+		sortType = "UpdatedAt desc"
+	}
+
+	res := con.Database.Order(sortType).Offset(questionsQuery.Page * questionsQuery.NumPerPage).Limit(questionsQuery.NumPerPage).Find(&questions)
 
 	if res.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": res.Error})

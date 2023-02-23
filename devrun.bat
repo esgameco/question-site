@@ -1,7 +1,8 @@
 :: Build Vue Files
 cd questionclient
-npm run build
+call npm run build
 cd ..
 
 :: Run Server
-go run .
+$Env:CGO_ENABLED=1
+call go run .

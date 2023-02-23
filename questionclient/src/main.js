@@ -6,12 +6,15 @@ import Home from './content/HomePage.vue'
 import Login from './user/LoginPage.vue'
 import Register from './user/RegisterPage.vue'
 import Question from './content/QuestionPage.vue'
+import QuestionList from './content/QuestionListPage.vue'
 
 const routes = [
     { path: '/', component: Home },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
-    { path: '/questions/:id', component: Question },
+    { path: '/question/:id', component: Question },
+    { path: '/questions', component: QuestionList },
+    // { path: '/questions/all', component: QuestionList },
 ]
 
 const router = createRouter({

@@ -13,3 +13,9 @@ type Question struct {
 	Author   *User      `gorm:"foreignkey:AuthorID" json:"author"`
 	AuthorID int        `json:"-"`
 }
+
+type QuestionsQuery struct {
+	SortType   string `json:"sortType`
+	Page       int    `json:"page"`
+	NumPerPage int    `json:"numPerPage"`
+}

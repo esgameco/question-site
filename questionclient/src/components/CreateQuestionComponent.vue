@@ -19,14 +19,14 @@ import axios from 'axios';
 export default {
     methods: {
         submit() {
-            axios.post(`/api/questions/create`, {
+            axios.post(`/api/question/create`, {
                     title: this.title,
                     body: this.body
                 })
                 .then(response => {
                     console.log('Created question: ', response)
                     if (response.status == 200) {
-                        this.$router.push(`/questions/${response.data.ID}`);
+                        this.$router.push(`/question/${response.data.ID}`);
                     }
                 })
                 .catch(error => {

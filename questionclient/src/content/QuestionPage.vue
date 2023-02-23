@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         getQuestion(questionID) {
-            axios.get(`/api/questions/${questionID}`)
+            axios.get(`/api/question/${questionID}`)
                 .then(response => {
                     this.question = response.data;
                 })
