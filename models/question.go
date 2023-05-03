@@ -15,7 +15,7 @@ type Question struct {
 }
 
 type QuestionsQuery struct {
-	SortType   string `json:"sortType`
+	SortType   string `json:"sortType"`
 	Page       int    `json:"page"`
 	NumPerPage int    `json:"numPerPage"`
 }

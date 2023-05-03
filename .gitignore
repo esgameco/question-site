@@ -3,3 +3,6 @@ question-site.db
 
 # Go Files
 go.sum
+
+# Node Files
+node_modules
